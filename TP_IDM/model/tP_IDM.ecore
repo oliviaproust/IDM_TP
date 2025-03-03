@@ -1,3 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    name="tP_IDM" nsURI="http://www.example.org/tP_IDM" nsPrefix="tP_IDM"/>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tP_IDM" nsURI="http://www.example.org/tP_IDM" nsPrefix="tP_IDM">
+  <eClassifiers xsi:type="ecore:EEnum" name="Direction">
+    <eLiterals name="Forward"/>
+    <eLiterals name="Backward" value="1"/>
+    <eLiterals name="Left" value="2"/>
+    <eLiterals name="Right" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SensRotation">
+    <eLiterals name="Clock"/>
+    <eLiterals name="CounterClock" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Movement" eSuperTypes="#//Instruction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//Direction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metrique" eType="#//Metrique"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="distance" eType="#//Number"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rotation" eSuperTypes="#//Instruction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sens" eType="#//SensRotation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="degre" eType="#//Number"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Speed">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metrique" eType="#//Metrique"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="distance" eType="#//Number"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationBinaire" abstract="true" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="y" eType="#//Expression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" eType="#//Expression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Instruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" eType="#//Instruction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationUnaire" abstract="true" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" eType="#//Expression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Instruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bloc" upperBound="-1" eType="#//Instruction"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionArret" eType="#//Expression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valeur" eType="#//Constante"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Metrique" abstract="true" interface="true"
+      eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Centimeter" eSuperTypes="#//Metrique"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Meter" eSuperTypes="#//Metrique"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Millimeter" eSuperTypes="#//Metrique"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Boolean" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Instruction" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//Instruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bloc" upperBound="-1" eType="#//Instruction"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Fonction" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bloc" upperBound="-1" eType="#//Instruction"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Affectation" eSuperTypes="#//Instruction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Robot">
+    <eOperations name="getTimestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="speed" eType="#//Speed"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="distance" eType="#//Number"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constante" eSuperTypes="#//Expression"/>
+</ecore:EPackage>
