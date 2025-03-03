@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tP_IDM:Robot
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tP_IDM="http://www.example.org/tP_IDM"
+    xsi:schemaLocation="http://www.example.org/tP_IDM tP_IDM.ecore">
+  <instruction
+      xsi:type="tP_IDM:DefFonction"
+      libelle="entry">
+    <bloc xsi:type="tP_IDM:SetSpeed"
+        vitesse="150.0"/>
+  </instruction>
+</tP_IDM:Robot>
