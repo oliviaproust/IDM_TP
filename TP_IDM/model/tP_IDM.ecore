@@ -34,8 +34,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Instruction">
     <eOperations name="evaluate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" eType="#//Instruction"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationUnaire" abstract="true" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="x" eType="#//Expression"
@@ -55,9 +53,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Metrique" abstract="true" interface="true"
-      eSuperTypes="#//Type">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
+      eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Centimeter" eSuperTypes="#//Metrique"/>
   <eClassifiers xsi:type="ecore:EClass" name="Meter" eSuperTypes="#//Metrique"/>
   <eClassifiers xsi:type="ecore:EClass" name="Millimeter" eSuperTypes="#//Metrique"/>
@@ -76,8 +72,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConsultVariable" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
-        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defvariable" eType="#//DefVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Robot">

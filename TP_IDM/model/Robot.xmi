@@ -19,9 +19,28 @@
           xsi:type="tP_IDM:Constante"/>
     </bloc>
     <bloc xsi:type="tP_IDM:Loop">
+      <bloc
+          xsi:type="tP_IDM:DefVariable"
+          libelle="count">
+        <valeur
+            xsi:type="tP_IDM:Add">
+          <x
+              xsi:type="tP_IDM:ConsultVariable"
+              defvariable="//@instruction.0/@bloc.2/@bloc.0"/>
+          <y
+              xsi:type="tP_IDM:Constante"
+              value="1.0"/>
+        </valeur>
+      </bloc>
+      <bloc
+          xsi:type="tP_IDM:CallFonction"
+          s="//@instruction.1"/>
       <conditionArret
           xsi:type="tP_IDM:LessThan">
-        <x xsi:type="tP_IDM:ConsultVariable"/>
+        <x xsi:type="tP_IDM:ConsultVariable"
+            defvariable="//@instruction.0/@bloc.1"/>
+        <y xsi:type="tP_IDM:Constante"
+            value="5.0"/>
       </conditionArret>
     </bloc>
   </instruction>
@@ -29,8 +48,16 @@
       xsi:type="tP_IDM:DefFonction"
       libelle="square">
     <bloc xsi:type="tP_IDM:Movement"
-        distance="30.0"/>
+        distance="30.0">
+      <metrique
+          xsi:type="tP_IDM:Centimeter"/>
+    </bloc>
     <bloc xsi:type="tP_IDM:Rotation"
         degre="90.0"/>
+    <bloc xsi:type="tP_IDM:Movement"
+        distance="300.0">
+      <metrique
+          xsi:type="tP_IDM:Millimeter"/>
+    </bloc>
   </instruction>
 </tP_IDM:Robot>

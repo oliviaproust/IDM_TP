@@ -4,8 +4,7 @@
     modelDirectory="/TP_IDM/src-gen" creationIcons="false" editDirectory="/TP_IDM.edit/src-gen"
     editorDirectory="/TP_IDM.editor/src-gen" modelPluginID="TP_IDM" modelName="TP_IDM"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
-    importerID="org.eclipse.emf.importer.ecore" copyrightFields="false" operationReflection="false"
-    importOrganizing="true">
+    importerID="org.eclipse.emf.importer.ecore" copyrightFields="false" importOrganizing="true">
   <foreignModel>tP_IDM.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="TP_IDM" disposableProviderFactory="true" ecorePackage="tP_IDM.ecore#/">
@@ -37,8 +36,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//OperationBinaire/y"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Expression">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Expression/instruction"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Expression/type"/>
       <genOperations ecoreOperation="tP_IDM.ecore#//Expression/evaluate"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//OperationUnaire">
@@ -54,9 +51,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//DefVariable/valeur"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Number"/>
-    <genClasses ecoreClass="tP_IDM.ecore#//Metrique">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//Metrique/distance"/>
-    </genClasses>
+    <genClasses ecoreClass="tP_IDM.ecore#//Metrique"/>
     <genClasses ecoreClass="tP_IDM.ecore#//Centimeter"/>
     <genClasses ecoreClass="tP_IDM.ecore#//Meter"/>
     <genClasses ecoreClass="tP_IDM.ecore#//Millimeter"/>
@@ -72,7 +67,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//DefFonction/libelle"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//ConsultVariable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//ConsultVariable/libelle"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//ConsultVariable/defvariable"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Robot">
