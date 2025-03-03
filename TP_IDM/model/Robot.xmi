@@ -9,6 +9,28 @@
       xsi:type="tP_IDM:DefFonction"
       libelle="entry">
     <bloc xsi:type="tP_IDM:SetSpeed"
-        vitesse="150.0"/>
+        vitesse="150.0">
+      <metrique
+          xsi:type="tP_IDM:Millimeter"/>
+    </bloc>
+    <bloc xsi:type="tP_IDM:DefVariable"
+        libelle="count">
+      <valeur
+          xsi:type="tP_IDM:Constante"/>
+    </bloc>
+    <bloc xsi:type="tP_IDM:Loop">
+      <conditionArret
+          xsi:type="tP_IDM:LessThan">
+        <x xsi:type="tP_IDM:ConsultVariable"/>
+      </conditionArret>
+    </bloc>
+  </instruction>
+  <instruction
+      xsi:type="tP_IDM:DefFonction"
+      libelle="square">
+    <bloc xsi:type="tP_IDM:Movement"
+        distance="30.0"/>
+    <bloc xsi:type="tP_IDM:Rotation"
+        degre="90.0"/>
   </instruction>
 </tP_IDM:Robot>
