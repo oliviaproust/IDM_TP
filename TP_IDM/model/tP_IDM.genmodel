@@ -73,7 +73,7 @@
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//ConsultVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//ConsultVariable/libelle"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//ConsultVariable/defvariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//ConsultVariable/defvariable"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Robot">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Robot/instruction"/>
@@ -92,7 +92,7 @@
     <genClasses ecoreClass="tP_IDM.ecore#//getTimestamp"/>
     <genClasses ecoreClass="tP_IDM.ecore#//CallFonction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//CallFonction/libelle"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//CallFonction/deffonction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//CallFonction/s"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Void"/>
     <genClasses ecoreClass="tP_IDM.ecore#//Add"/>
