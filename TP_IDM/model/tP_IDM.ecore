@@ -78,6 +78,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConsultVariable" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
         defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defvariable" upperBound="-1"
+        eType="#//DefVariable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Robot">
     <eOperations name="getTimestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time"/>
@@ -99,6 +101,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="getTimestamp" eSuperTypes="#//Instruction"/>
   <eClassifiers xsi:type="ecore:EClass" name="CallFonction" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deffonction" upperBound="-1"
+        eType="#//DefFonction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Void" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Add" eSuperTypes="#//OperationBinaire"/>
