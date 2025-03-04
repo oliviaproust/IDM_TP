@@ -34,7 +34,7 @@ Metrique returns Metrique:
 ;
 
 ConsultVariable returns ConsultVariable:
-    defvariable=[DefVariable:EString ] 
+    defvariable=[DefVariable:ID ] 
 ;
 
 Constante returns Constante:
@@ -42,7 +42,7 @@ Constante returns Constante:
 ;
 
 CallFonction returns CallFonction:
-    refFonction=[DefFonction:EString ] '(' (parametres+=Expression  ("," parametres+=Expression  )* )?')'
+    refFonction=[DefFonction:ID ] '(' (parametres+=Expression  ("," parametres+=Expression  )* )?')'
 ;
 
 Parametre returns Parametre:
@@ -89,7 +89,7 @@ Equal returns Equal:
 ;
 
 DefVariable returns DefVariable:
-    'var' ^type=Type libelle=EString '=' valeur=Expression 
+    'var' ^type=Type libelle=ID '=' valeur=Expression 
 ;
 
 EString returns string:
@@ -113,11 +113,13 @@ Void returns Void:
 // ;
 
 Str returns Str:
-    '"' STRING '"'
+    STRING
 ;
 
+
+
 DefFonction returns DefFonction:
-    'let' ^type=Type libelle=Str '(' (parametres+=Parametre ("," parametres+=Parametre  )*)? ')' '{' (bloc+=Instruction)* '}'  
+    'let' ^type=Type libelle=ID '(' (parametres+=Parametre ("," parametres+=Parametre  )*)? ')' '{' (bloc+=Instruction)* '}'  
 ;
 
 Movement returns Movement:
