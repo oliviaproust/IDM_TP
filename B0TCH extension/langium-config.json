@@ -1,0 +1,15 @@
+{
+    "projectName": "B0Tch",
+    "languages": [{
+        "id": "b-0-tch",
+        "grammar": "src/language/b-0-tch.langium",
+        "fileExtensions": [".bth"],
+        "textMate": {
+            "out": "syntaxes/b-0-tch.tmLanguage.json"
+        },
+        "monarch": {
+            "out": "src/syntaxes/b-0-tch.monarch.ts"
+        }
+    }],
+    "out": "src/language/generated"
+}
