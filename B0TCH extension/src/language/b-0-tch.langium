@@ -7,9 +7,6 @@ entry Robot returns Robot:
     (bloc+=Instruction)+  
 ;
 
-// Add returns Add:
-//      x=Expression "+" y=Expression 
-// ;\n
 Add returns Expression:
     SimpleExpression ({Add.x=current} '+' y=Expression)*;
 
@@ -18,12 +15,13 @@ SimpleExpression:
 
 
 Expression returns Expression:
-    ConsultVariable | Constante | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+    ConsultVariable  | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+;
+Type returns Type:
+    {Type} ('number' | 'boolean' | 'void' | 'string')
 ;
 
-Type returns Type:
-    EDouble | Boolean | Void | Str
-;
+
 
 Instruction returns Instruction:
     Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | Constante | SetSpeed | GetTimestamp | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
@@ -38,7 +36,7 @@ ConsultVariable returns ConsultVariable:
 ;
 
 Constante returns Constante:
-    value=EDouble 
+    value=EDouble | value=STRING | value=BOOLEAN
 ;
 
 CallFonction returns CallFonction:
@@ -46,7 +44,7 @@ CallFonction returns CallFonction:
 ;
 
 Parametre returns Parametre:
-    ^type=Type libelle=Str
+    ^type=Type libelle=ID
 ;
 Minus returns Minus:
     SimpleExpression ({Minus.x=current} '-' y=Expression)*
@@ -92,31 +90,6 @@ DefVariable returns DefVariable:
     'var' ^type=Type libelle=ID '=' valeur=Expression 
 ;
 
-EString returns string:
-    STRING | ID 
-;
-
-// Num returns Num:
-//     {Num} 'number'  
-// ;
-
-Boolean returns Boolean:
-    {Boolean} 'boolean'  
-;
-
-Void returns Void:
-    {Void} 'void'  
-;
-
-// Double returns Num:
-//     {Num} 'double' 
-// ;
-
-Str returns Str:
-    STRING
-;
-
-
 
 DefFonction returns DefFonction:
     'let' ^type=Type libelle=ID '(' (parametres+=Parametre ("," parametres+=Parametre  )*)? ')' '{' (bloc+=Instruction)* '}'  
@@ -131,7 +104,7 @@ Rotation returns Rotation:
 ;
 
 Loop returns Loop:
-    'loop' condition=Expression '{' (bloc+=Instruction  (bloc+=Instruction)* )? '}'  
+    'loop' condition=Expression '{' (bloc+=Instruction)* '}'  
 ;
 
 Condition returns Condition:

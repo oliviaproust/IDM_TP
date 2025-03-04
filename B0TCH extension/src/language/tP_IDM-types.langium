@@ -45,7 +45,7 @@ interface DefVariable extends Instruction {
 }
 
 interface Constante extends Expression {
-	value: number
+	value: number | string | boolean
 }
 
 interface CallFonction extends Expression {
@@ -57,12 +57,12 @@ interface DefFonction extends Instruction {
 	type: Type
 	parametres?: Parametre[]
 	bloc: Instruction[]
-	libelle: Str
+	libelle: string
 }
 
 interface Parametre {
 	type: Type
-	libelle: Str
+	libelle: string
 }
 
 interface Minus extends OperationBinaire {
