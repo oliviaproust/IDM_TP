@@ -4,7 +4,7 @@ import 'tP_IDM-types'
 import 'XMLType-types'
 
 entry Add returns Add:
-    'Add' '{' 'x' x=Expression  'y' y=Expression  '}'  
+     x=Expression "+" y=Expression 
 ;
 
 Expression returns Expression:
@@ -24,59 +24,62 @@ Metrique returns Metrique:
 ;
 
 ConsultVariable returns ConsultVariable:
-    'ConsultVariable' '{' 'defvariable' defvariable=[DefVariable:EString ] '}'  
+    defvariable=[DefVariable:EString ] 
 ;
 
 Constante returns Constante:
-    {Constante} 'Constante' '{' ('value' value=Double  )? '}'  
+    value=Double 
 ;
 
 CallFonction returns CallFonction:
-    'CallFonction' '{' ('libelle' libelle=String0  )? 'refFonction' refFonction=[DefFonction:EString ] '}'  
+    refFonction=[DefFonction:EString ] '(' (parametres+=Expression  ("," parametres+=Expression  )* )?')'
 ;
 
+Parametre returns Parametre:
+    ^type=Type libelle=String0
+
 Minus returns Minus:
-    'Minus' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '-' y=Expression
 ;
 
 Times returns Times:
-    'Times' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '*' y=Expression  
 ;
 
 Divide returns Divide:
-    'Divide' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '/' y=Expression
 ;
 
 And returns And:
-    'And' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '&&' y=Expression   
 ;
 
 Or returns Or:
-    'Or' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '||' y=Expression 
 ;
 
 Inverse returns Inverse:
-    'Inverse' '{' 'x' x=Expression  '}'  
+    '!' x=Expression 
 ;
 
 Not returns Not:
-    'Not' '{' 'x' x=Expression  '}'  
+    '-' x=Expression  
 ;
 
 MoreThan returns MoreThan:
-    'MoreThan' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '>' y=Expression 
 ;
 
 LessThan returns LessThan:
-    'LessThan' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '<' y=Expression 
 ;
 
 Equal returns Equal:
-    'Equal' '{' 'x' x=Expression  'y' y=Expression  '}'  
+    x=Expression  '==' y=Expression
 ;
 
 DefVariable returns DefVariable:
-    'DefVariable' '{' ('libelle' libelle=EString  )? 'type' ^type=Type  'valeur' valeur=Expression  '}'  
+    'var' ^type=Type libelle=EString '=' valeur=Expression 
 ;
 
 EString returns string:
@@ -104,31 +107,31 @@ String0 returns String:
 ;
 
 DefFonction returns DefFonction:
-    {DefFonction} 'DefFonction' '{' ('libelle' libelle=String0  )? ('bloc' '{' bloc+=Instruction  ("," bloc+=Instruction  )* '}' )? '}'  
+    'let' ^type=Type libelle=String0 '(' parametres+=Parametre  ("," parametres+=Parametre  )* ')' '{' (bloc+=Instruction  ("," bloc+=Instruction  )*)? '}'  
 ;
 
 Movement returns Movement:
-    'Movement' '{' ('direction' direction=Direction  )? ('distance' distance=Double  )? 'metrique' metrique=Metrique  '}'  
+    direction=Direction distance=Double 'in' metrique=Metrique  
 ;
 
 Rotation returns Rotation:
-    {Rotation} 'Rotation' '{' ('sens' sens=SensRotation  )? ('degre' degre=Double  )? '}'  
+    sens=SensRotation degre=Double
 ;
 
 Loop returns Loop:
-    'Loop' '{' ('bloc' '{' bloc+=Instruction  ("," bloc+=Instruction  )* '}' )? 'condition' condition=Expression  '}'  
+    'loop' condition=Expression '{' (bloc+=Instruction  (bloc+=Instruction)* )? '}'  
 ;
 
 Condition returns Condition:
-    'Condition' '{' ('bloc' '{' bloc+=Instruction  ("," bloc+=Instruction  )* '}' )? 'condition' condition=Expression  '}'  
+    'if'  condition=Expression 'then' '{' (then+=Instruction  ("," then+=Instruction  )*)? 'else' '{' (else+=Instruction  ("," else+=Instruction  )*)? '}' '}'  
 ;
 
 SetSpeed returns SetSpeed:
-    'SetSpeed' '{' ('vitesse' vitesse=EDouble  )? 'metrique' metrique=Metrique  '}'  
+    'SetSpeed' '('vitesse=EDouble 'in' metrique=Metrique  ')'  
 ;
 
 getTimestamp returns getTimestamp:
-    {getTimestamp} 'getTimestamp'  
+    'getTimestamp()'  
 ;
 
 Direction returns Direction:
