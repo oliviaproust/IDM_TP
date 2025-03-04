@@ -4,7 +4,7 @@ import 'tP_IDM-types'
 import 'XMLType-types'
 
 entry Robot returns Robot:
-    (bloc+=Instruction  (';' bloc+=Instruction)* )?
+    (bloc+=Instruction)+  
 ;
 
 // Add returns Add:
@@ -22,7 +22,7 @@ Expression returns Expression:
 ;
 
 Type returns Type:
-    Num | Boolean | Void 
+    EDouble | Boolean | Void | Str
 ;
 
 Instruction returns Instruction:
@@ -38,7 +38,7 @@ ConsultVariable returns ConsultVariable:
 ;
 
 Constante returns Constante:
-    value=Double 
+    value=EDouble 
 ;
 
 CallFonction returns CallFonction:
@@ -96,9 +96,9 @@ EString returns string:
     STRING | ID 
 ;
 
-Num returns Num:
-    {Num} 'number'  
-;
+// Num returns Num:
+//     {Num} 'number'  
+// ;
 
 Boolean returns Boolean:
     {Boolean} 'boolean'  
@@ -108,24 +108,24 @@ Void returns Void:
     {Void} 'void'  
 ;
 
-Double returns Double:
-    'double' 
-;
+// Double returns Num:
+//     {Num} 'double' 
+// ;
 
 Str returns Str:
-    'string' 
+    '"' STRING '"'
 ;
 
 DefFonction returns DefFonction:
-    'let' ^type=Type libelle=Str '(' parametres+=Parametre  ("," parametres+=Parametre  )* ')' '{' (bloc+=Instruction  ("," bloc+=Instruction  )*)? '}'  
+    'let' ^type=Type libelle=Str '(' (parametres+=Parametre ("," parametres+=Parametre  )*)? ')' '{' (bloc+=Instruction)* '}'  
 ;
 
 Movement returns Movement:
-    direction=Direction distance=Double 'in' metrique=Metrique  
+    direction=Direction distance=EDouble 'in' metrique=Metrique  
 ;
 
 Rotation returns Rotation:
-    sens=SensRotation degre=Double
+    sens=SensRotation degre=EDouble
 ;
 
 Loop returns Loop:
@@ -137,7 +137,7 @@ Condition returns Condition:
 ;
 
 SetSpeed returns SetSpeed:
-    'SetSpeed' '('vitesse=Num 'in' metrique=Metrique  ')'  
+    'SetSpeed' '('vitesse=EDouble 'in' metrique=Metrique  ')'  
 ;
 
 GetTimestamp returns GetTimestamp:
@@ -153,15 +153,15 @@ Direction_Left returns Direction_Left: 'Left' ;
 Direction_Right returns Direction_Right: 'Right' ;
 
 Centimeter returns Centimeter:
-    {Centimeter} 'Centimeter'  
+    {Centimeter} 'cm'  
 ;
 
 Meter returns Meter:
-    {Meter} 'Meter'  
+    {Meter} 'm'  
 ;
 
 Millimeter returns Millimeter:
-    {Millimeter} 'Millimeter'  
+    {Millimeter} 'mm'  
 ;
 
 SensRotation returns SensRotation:
@@ -171,6 +171,6 @@ SensRotation_Clock returns SensRotation_Clock: 'Clock' ;
 SensRotation_CounterClock returns SensRotation_CounterClock: 'CounterClock' ;
 
 EDouble returns number:
-    '-'? INT? '.' INT (('E' | 'e' )'-'? INT )?  
+    '-'? INT ('.' INT (('E' | 'e' )'-'? INT )? )? 
 ;
 

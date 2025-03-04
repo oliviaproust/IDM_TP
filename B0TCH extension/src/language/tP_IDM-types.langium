@@ -11,7 +11,7 @@ type SensRotation_Clock = 'Clock';
 type SensRotation_CounterClock = 'CounterClock';
 
 interface Robot {
- 	bloc: Instruction[]
+ bloc: Instruction[]
 }
 
 interface Add extends OperationBinaire {
@@ -45,7 +45,7 @@ interface DefVariable extends Instruction {
 }
 
 interface Constante extends Expression {
-	value: Double
+	value: number
 }
 
 interface CallFonction extends Expression {
@@ -99,8 +99,8 @@ interface LessThan extends OperationBinaire {
 interface Equal extends OperationBinaire {
 }
 
-interface Num extends Type {
-}
+// interface Num extends Type {
+// }
 
 interface Boolean extends Type {
 }
@@ -110,13 +110,13 @@ interface Void extends Type {
 
 interface Movement extends Instruction {
 	direction: Direction
-	distance: Double
+	distance: number
 	metrique: Metrique
 }
 
 interface Rotation extends Instruction {
 	sens: SensRotation
-	degre: Double
+	degre: number
 }
 
 interface Loop extends Instruction {
@@ -131,7 +131,7 @@ interface Condition extends Instruction {
 }
 
 interface SetSpeed extends Instruction {
-	vitesse: Num
+	vitesse: number
 	metrique: Metrique
 }
 
