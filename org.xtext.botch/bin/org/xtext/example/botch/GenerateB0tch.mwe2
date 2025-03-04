@@ -33,9 +33,11 @@ Workflow {
 		language = StandardLanguage {
 			name = "org.xtext.example.botch.B0tch"
 			fileExtensions = "bth"
-			referencedResource = "platform:/resource/IDM_TP/TP_IDM/model/tP_IDM.genmodel"
+			referencedResource = "platform:/resource/TP_IDM/model/tP_IDM.genmodel"
 			
-			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
+			fragment = io.typefox.xtext2langium.Xtext2LangiumFragment {
+        		outputPath = './langium'
+    		}
 
 			formatter = {
 				generateStub = true

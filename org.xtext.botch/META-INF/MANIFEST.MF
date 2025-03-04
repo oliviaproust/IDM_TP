@@ -9,5 +9,18 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: TP_IDM,
  org.eclipse.xtext,
  org.eclipse.xtext.xbase,
- org.eclipse.equinox.common;bundle-version="3.16.0"
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ io.typefox.xtext2langium;bundle-version="0.4.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.38.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: org.xtext.example.botch.services,
+ org.xtext.example.botch.formatting2,
+ org.xtext.example.botch.parser.antlr,
+ org.xtext.example.botch.scoping,
+ org.xtext.example.botch.serializer,
+ org.xtext.example.botch.parser.antlr.internal,
+ org.xtext.example.botch.validation,
+ org.xtext.example.botch,
+ org.xtext.example.botch.generator
+Import-Package: org.apache.log4j
