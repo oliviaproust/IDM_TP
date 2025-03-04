@@ -35,15 +35,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//OperationBinaire/x"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//OperationBinaire/y"/>
     </genClasses>
-    <genClasses ecoreClass="tP_IDM.ecore#//Expression">
-      <genOperations ecoreOperation="tP_IDM.ecore#//Expression/evaluate"/>
-    </genClasses>
+    <genClasses ecoreClass="tP_IDM.ecore#//Expression"/>
     <genClasses ecoreClass="tP_IDM.ecore#//OperationUnaire">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//OperationUnaire/x"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Loop">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Loop/bloc"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Loop/conditionArret"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Loop/condition"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//DefVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//DefVariable/libelle"/>
@@ -71,10 +69,6 @@
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Robot">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Robot/instruction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//Robot/distance"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//Robot/speed"/>
-      <genOperations ecoreOperation="tP_IDM.ecore#//Robot/getTimestamp"/>
-      <genOperations ecoreOperation="tP_IDM.ecore#//Robot/setSpeed"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Constante">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//Constante/value"/>
@@ -86,7 +80,7 @@
     <genClasses ecoreClass="tP_IDM.ecore#//getTimestamp"/>
     <genClasses ecoreClass="tP_IDM.ecore#//CallFonction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tP_IDM.ecore#//CallFonction/libelle"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//CallFonction/s"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference tP_IDM.ecore#//CallFonction/refFonction"/>
     </genClasses>
     <genClasses ecoreClass="tP_IDM.ecore#//Void"/>
     <genClasses ecoreClass="tP_IDM.ecore#//Add"/>

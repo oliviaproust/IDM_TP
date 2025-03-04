@@ -14,46 +14,39 @@
   <eClassifiers xsi:type="ecore:EClass" name="Movement" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//Direction"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metrique" eType="#//Metrique"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metrique" lowerBound="1"
+        eType="#//Metrique" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rotation" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sens" eType="#//SensRotation"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="degre" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Speed">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metrique" eType="#//Metrique"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationBinaire" abstract="true" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="x" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" lowerBound="1" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="y" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="y" lowerBound="1" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Instruction">
-    <eOperations name="evaluate"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Instruction"/>
   <eClassifiers xsi:type="ecore:EClass" name="OperationUnaire" abstract="true" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="x" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" lowerBound="1" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bloc" upperBound="-1" eType="#//Instruction"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionArret" eType="#//Expression"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefVariable" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valeur" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valeur" lowerBound="1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Metrique" abstract="true" interface="true"
-      eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Metrique" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Centimeter" eSuperTypes="#//Metrique"/>
   <eClassifiers xsi:type="ecore:EClass" name="Meter" eSuperTypes="#//Metrique"/>
   <eClassifiers xsi:type="ecore:EClass" name="Millimeter" eSuperTypes="#//Metrique"/>
@@ -63,8 +56,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bloc" upperBound="-1" eType="#//Instruction"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefFonction" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bloc" upperBound="-1" eType="#//Instruction"
@@ -72,29 +65,26 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConsultVariable" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defvariable" eType="#//DefVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defvariable" lowerBound="1"
+        eType="#//DefVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Robot">
-    <eOperations name="getTimestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time"/>
-    <eOperations name="setSpeed"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
         eType="#//Instruction" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="speed" eType="#//Speed"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constante" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SetSpeed" eSuperTypes="#//Instruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vitesse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metrique" eType="#//Metrique"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metrique" lowerBound="1"
+        eType="#//Metrique" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="getTimestamp" eSuperTypes="#//Instruction"/>
   <eClassifiers xsi:type="ecore:EClass" name="CallFonction" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="libelle" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="s" eType="#//DefFonction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refFonction" lowerBound="1"
+        eType="#//DefFonction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Void" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Add" eSuperTypes="#//OperationBinaire"/>
