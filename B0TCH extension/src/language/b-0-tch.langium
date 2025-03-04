@@ -15,7 +15,7 @@ SimpleExpression:
 
 
 Expression returns Expression:
-    ConsultVariable  | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+    ConsultVariable  | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal | STRING | BOOLEAN | EDouble
 ;
 Type returns Type:
     {Type} ('number' | 'boolean' | 'void' | 'string')
@@ -24,7 +24,7 @@ Type returns Type:
 
 
 Instruction returns Instruction:
-    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | Constante | SetSpeed | GetTimestamp | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | SetSpeed | GetTimestamp | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
 ;
 
 Metrique returns Metrique:
@@ -33,10 +33,6 @@ Metrique returns Metrique:
 
 ConsultVariable returns ConsultVariable:
     defvariable=[DefVariable:ID ] 
-;
-
-Constante returns Constante:
-    value=EDouble | value=STRING | value=BOOLEAN
 ;
 
 CallFonction returns CallFonction:

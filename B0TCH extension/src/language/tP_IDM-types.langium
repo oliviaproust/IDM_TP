@@ -44,10 +44,6 @@ interface DefVariable extends Instruction {
 	valeur: Expression
 }
 
-interface Constante extends Expression {
-	value: number | string | boolean
-}
-
 interface CallFonction extends Expression {
 	refFonction: @DefFonction
 	parametres?: Expression[]
