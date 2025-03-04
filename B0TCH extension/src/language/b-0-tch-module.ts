@@ -1,6 +1,6 @@
 import { type Module, inject } from 'langium';
 import { createDefaultModule, createDefaultSharedModule, type DefaultSharedModuleContext, type LangiumServices, type LangiumSharedServices, type PartialLangiumServices } from 'langium/lsp';
-import { B0TchGeneratedModule, B0TchGeneratedSharedModule } from './generated/module.js';
+import { B0tchGeneratedModule, B0TchGeneratedSharedModule } from './generated/module.js';
 import { B0TchValidator, registerValidationChecks } from './b-0-tch-validator.js';
 
 /**
@@ -54,7 +54,7 @@ export function createB0TchServices(context: DefaultSharedModuleContext): {
     );
     const B0Tch = inject(
         createDefaultModule({ shared }),
-        B0TchGeneratedModule,
+        B0tchGeneratedModule,
         B0TchModule
     );
     shared.ServiceRegistry.register(B0Tch);

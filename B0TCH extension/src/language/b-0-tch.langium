@@ -1,18 +1,176 @@
-grammar B0Tch
+grammar B0tch
+import 'Terminals'
+import 'tP_IDM-types'
+import 'XMLType-types'
 
-entry Model:
-    (persons+=Person | greetings+=Greeting)*;
+entry Robot returns Robot:
+    (bloc+=Instruction  (';' bloc+=Instruction)* )?
+;
 
-Person:
-    'person' name=ID;
+// Add returns Add:
+//      x=Expression "+" y=Expression 
+// ;\n
+Add returns Expression:
+    SimpleExpression ({Add.x=current} '+' y=Expression)*;
 
-Greeting:
-    'Hello' person=[Person:ID] '!';
+SimpleExpression:
+    '(' Expression ')';
 
-hidden terminal WS: /\s+/;
-terminal ID: /[_a-zA-Z][\w_]*/;
-terminal INT returns number: /[0-9]+/;
-terminal STRING: /"(\\.|[^"\\])*"|'(\\.|[^'\\])*'/;
 
-hidden terminal ML_COMMENT: /\/\*[\s\S]*?\*\//;
-hidden terminal SL_COMMENT: /\/\/[^\n\r]*/;
+Expression returns Expression:
+    ConsultVariable | Constante | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+;
+
+Type returns Type:
+    Num | Boolean | Void 
+;
+
+Instruction returns Instruction:
+    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | Constante | SetSpeed | GetTimestamp | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+;
+
+Metrique returns Metrique:
+    Centimeter | Meter | Millimeter 
+;
+
+ConsultVariable returns ConsultVariable:
+    defvariable=[DefVariable:EString ] 
+;
+
+Constante returns Constante:
+    value=Double 
+;
+
+CallFonction returns CallFonction:
+    refFonction=[DefFonction:EString ] '(' (parametres+=Expression  ("," parametres+=Expression  )* )?')'
+;
+
+Parametre returns Parametre:
+    ^type=Type libelle=Str
+;
+Minus returns Minus:
+    SimpleExpression ({Minus.x=current} '-' y=Expression)*
+;
+
+Times returns Times:
+    SimpleExpression ({Times.x=current} '*' y=Expression)*
+;
+
+Divide returns Divide:
+    SimpleExpression ({Divide.x=current} '/' y=Expression)*
+;
+
+And returns And:
+    SimpleExpression ({And.x=current} '&&' y=Expression)* 
+;
+
+Or returns Or:
+    SimpleExpression ({Or.x=current} '||' y=Expression)*
+;
+
+Inverse returns Inverse:
+    '!' x=Expression 
+;
+
+Not returns Not:
+    '-' x=Expression  
+;
+
+MoreThan returns MoreThan:
+    SimpleExpression ({MoreThan.x=current} '>' y=Expression)*
+;
+
+LessThan returns LessThan:
+    SimpleExpression ({LessThan.x=current} '<' y=Expression)*
+;
+
+Equal returns Equal:
+    SimpleExpression ({Equal.x=current} '==' y=Expression)*
+;
+
+DefVariable returns DefVariable:
+    'var' ^type=Type libelle=EString '=' valeur=Expression 
+;
+
+EString returns string:
+    STRING | ID 
+;
+
+Num returns Num:
+    {Num} 'number'  
+;
+
+Boolean returns Boolean:
+    {Boolean} 'boolean'  
+;
+
+Void returns Void:
+    {Void} 'void'  
+;
+
+Double returns Double:
+    'double' 
+;
+
+Str returns Str:
+    'string' 
+;
+
+DefFonction returns DefFonction:
+    'let' ^type=Type libelle=Str '(' parametres+=Parametre  ("," parametres+=Parametre  )* ')' '{' (bloc+=Instruction  ("," bloc+=Instruction  )*)? '}'  
+;
+
+Movement returns Movement:
+    direction=Direction distance=Double 'in' metrique=Metrique  
+;
+
+Rotation returns Rotation:
+    sens=SensRotation degre=Double
+;
+
+Loop returns Loop:
+    'loop' condition=Expression '{' (bloc+=Instruction  (bloc+=Instruction)* )? '}'  
+;
+
+Condition returns Condition:
+    'if'  condition=Expression 'then' '{' (then+=Instruction  ("," then+=Instruction  )*)? 'else' '{' (else+=Instruction  ("," else+=Instruction  )*)? '}' '}'  
+;
+
+SetSpeed returns SetSpeed:
+    'SetSpeed' '('vitesse=Num 'in' metrique=Metrique  ')'  
+;
+
+GetTimestamp returns GetTimestamp:
+    {GetTimestamp} 'getTimestamp()'  
+;
+
+Direction returns Direction:
+    Direction_Forward | Direction_Backward | Direction_Left | Direction_Right
+;
+Direction_Forward returns Direction_Forward: 'Forward' ;
+Direction_Backward returns Direction_Backward: 'Backward' ;
+Direction_Left returns Direction_Left: 'Left' ;
+Direction_Right returns Direction_Right: 'Right' ;
+
+Centimeter returns Centimeter:
+    {Centimeter} 'Centimeter'  
+;
+
+Meter returns Meter:
+    {Meter} 'Meter'  
+;
+
+Millimeter returns Millimeter:
+    {Millimeter} 'Millimeter'  
+;
+
+SensRotation returns SensRotation:
+    SensRotation_Clock | SensRotation_CounterClock
+;
+SensRotation_Clock returns SensRotation_Clock: 'Clock' ;
+SensRotation_CounterClock returns SensRotation_CounterClock: 'CounterClock' ;
+
+EDouble returns number:
+    '-'? INT? '.' INT (('E' | 'e' )'-'? INT )?  
+;
+

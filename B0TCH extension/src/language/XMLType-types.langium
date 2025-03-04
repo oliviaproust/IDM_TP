@@ -1,5 +1,5 @@
 
-type Double = string;
+type Num = number;
 
-type String = string;
+type Str = string;
 

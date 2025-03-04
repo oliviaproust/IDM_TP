@@ -10,6 +10,10 @@ type SensRotation = SensRotation_Clock | SensRotation_CounterClock;
 type SensRotation_Clock = 'Clock';
 type SensRotation_CounterClock = 'CounterClock';
 
+interface Robot {
+ 	bloc: Instruction[]
+}
+
 interface Add extends OperationBinaire {
 }
 
@@ -35,23 +39,30 @@ interface ConsultVariable extends Expression {
 }
 
 interface DefVariable extends Instruction {
-	libelle?: string
+	libelle: string
 	^type: Type
 	valeur: Expression
 }
 
 interface Constante extends Expression {
-	value?: Double
+	value: Double
 }
 
 interface CallFonction extends Expression {
-	libelle?: String
 	refFonction: @DefFonction
+	parametres?: Expression[]
 }
 
 interface DefFonction extends Instruction {
+	type: Type
+	parametres?: Parametre[]
 	bloc: Instruction[]
-	libelle?: String
+	libelle: Str
+}
+
+interface Parametre {
+	type: Type
+	libelle: Str
 }
 
 interface Minus extends OperationBinaire {
@@ -88,7 +99,7 @@ interface LessThan extends OperationBinaire {
 interface Equal extends OperationBinaire {
 }
 
-interface Number extends Type {
+interface Num extends Type {
 }
 
 interface Boolean extends Type {
@@ -98,14 +109,14 @@ interface Void extends Type {
 }
 
 interface Movement extends Instruction {
-	direction?: Direction
-	distance?: Double
+	direction: Direction
+	distance: Double
 	metrique: Metrique
 }
 
 interface Rotation extends Instruction {
-	sens?: SensRotation
-	degre?: Double
+	sens: SensRotation
+	degre: Double
 }
 
 interface Loop extends Instruction {
@@ -114,16 +125,17 @@ interface Loop extends Instruction {
 }
 
 interface Condition extends Instruction {
-	bloc: Instruction[]
+	then: Instruction[]
+	else : Instruction[]
 	condition: Expression
 }
 
 interface SetSpeed extends Instruction {
-	vitesse?: number
+	vitesse: Num
 	metrique: Metrique
 }
 
-interface getTimestamp extends Instruction {
+interface GetTimestamp extends Instruction {
 }
 
 interface Centimeter extends Metrique {

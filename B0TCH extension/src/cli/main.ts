@@ -1,7 +1,7 @@
-import type { Model } from '../language/generated/ast.js';
+import type { Robot } from '../language/generated/ast.js';
 import chalk from 'chalk';
 import { Command } from 'commander';
-import { B0TchLanguageMetaData } from '../language/generated/module.js';
+import { B0tchLanguageMetaData } from '../language/generated/module.js';
 import { createB0TchServices } from '../language/b-0-tch-module.js';
 import { extractAstNode } from './cli-util.js';
 import { generateJavaScript } from './generator.js';
@@ -16,8 +16,8 @@ const packageContent = await fs.readFile(packagePath, 'utf-8');
 
 export const generateAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
     const services = createB0TchServices(NodeFileSystem).B0Tch;
-    const model = await extractAstNode<Model>(fileName, services);
-    const generatedFilePath = generateJavaScript(model, fileName, opts.destination);
+    const robot = await extractAstNode<Robot>(fileName, services);
+    const generatedFilePath = generateJavaScript(robot, fileName, opts.destination);
     console.log(chalk.green(`JavaScript code generated successfully: ${generatedFilePath}`));
 };
 
@@ -30,7 +30,7 @@ export default function(): void {
 
     program.version(JSON.parse(packageContent).version);
 
-    const fileExtensions = B0TchLanguageMetaData.fileExtensions.join(', ');
+    const fileExtensions = B0tchLanguageMetaData.fileExtensions.join(', ');
     program
         .command('generate')
         .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
