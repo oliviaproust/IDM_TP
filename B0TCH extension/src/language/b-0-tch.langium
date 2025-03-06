@@ -4,7 +4,11 @@ import 'tP_IDM-types'
 import 'XMLType-types'
 
 entry Robot returns Robot:
-    (bloc+=Instruction)+  
+    Block
+;
+
+fragment Block : 
+    (bloc+=Instruction)*
 ;
 
 Add returns Expression:
@@ -15,7 +19,7 @@ SimpleExpression returns SimpleExpression:
 
 
 Expression returns Expression:
-    Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+    Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal | Distance 
 ;
 Type returns Type:
     {Type} ('number' | 'boolean' | 'void' | 'string')
@@ -53,7 +57,7 @@ CallFonction returns CallFonction:
 ;
 
 Parametre returns Parametre:
-    ^type=Type libelle=ID
+    ^type=Type name=ID
 ;
 Minus returns Minus:
     SimpleExpression ({Minus.x=current} '-' y=Expression)*
@@ -96,16 +100,20 @@ Equal returns Equal:
 ;
 
 DefVariable returns DefVariable:
-    'var' ^type=Type name=ID '=' valeur=Expression ('in' Metrique)?
+    'var' ^type=Type name=ID '=' valeur=Expression 
 ;
 
 
 DefFonction returns DefFonction:
-    'let' ^type=Type libelle=ID '(' (parametres+=Parametre ("," parametres+=Parametre  )*)? ')' '{' (bloc+=Instruction)* '}'  
+    'let' ^type=Type name=ID '(' (parametres+=Parametre ("," parametres+=Parametre  )*)? ')' '{' Block '}'  
 ;
 
 Movement returns Movement:
-    direction=Direction distance=Expression 'in' metrique=Metrique  
+    direction=Direction distance=Distance
+;
+
+Distance returns Distance :
+    SimpleExpression {Distance.distance=current} 'in' metrique=Metrique
 ;
 
 Rotation returns Rotation:
@@ -113,15 +121,15 @@ Rotation returns Rotation:
 ;
 
 Loop returns Loop:
-    'loop' condition=Expression '{' (bloc+=Instruction)* '}'  
+    'loop' condition=Expression '{' Block '}'  
 ;
 
 Condition returns Condition:
-    'if'  condition=Expression 'then' '{' (then+=Instruction)* '}' 'else' '{' (else+=Instruction  )* '}'   
+    'if'  condition=Expression 'then' '{' (then+=Instruction)* '}' ('else' '{' (else+=Instruction  )* '}')?   
 ;
 
 SetSpeed returns SetSpeed:
-    'setSpeed' '('vitesse=Expression 'in' metrique=Metrique  ')'  
+    'setSpeed' '('distance=Distance  ')'  
 ;
 
 GetTimestamp returns GetTimestamp:

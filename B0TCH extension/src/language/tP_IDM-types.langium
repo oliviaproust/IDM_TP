@@ -58,12 +58,12 @@ interface DefFonction extends Instruction {
 	type: Type
 	parametres?: Parametre[]
 	bloc: Instruction[]
-	libelle: string
+	name: string
 }
 
 interface Parametre {
 	type: Type
-	libelle: string
+	name: string
 }
 
 interface ConstanteBool extends Expression{
@@ -120,6 +120,10 @@ interface Void extends Type {
 
 interface Movement extends Expression {
 	direction: Direction
+	distance: Distance
+}
+
+interface Distance extends Expression{
 	distance: Expression
 	metrique: Metrique
 }
@@ -143,8 +147,7 @@ interface Condition extends Instruction {
 }
 
 interface SetSpeed extends Instruction {
-	vitesse: Expression
-	metrique: Metrique
+	distance:Distance
 }
 
 interface GetTimestamp extends Expression {
