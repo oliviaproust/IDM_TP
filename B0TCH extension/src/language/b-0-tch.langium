@@ -96,7 +96,7 @@ Equal returns Equal:
 ;
 
 DefVariable returns DefVariable:
-    'var' ^type=Type libelle=ID '=' valeur=Expression 
+    'var' ^type=Type libelle=ID '=' valeur=Expression ('in' Metrique)?
 ;
 
 
