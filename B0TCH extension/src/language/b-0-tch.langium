@@ -10,20 +10,30 @@ entry Robot returns Robot:
 Add returns Expression:
     SimpleExpression ({Add.x=current} '+' y=Expression)*;
 
-SimpleExpression:
-    '(' Expression ')';
+SimpleExpression returns SimpleExpression:
+    '(' Expression ')' | ConsultVariable | CallFonction | ConstanteBool | ConstanteStr | ConstanteNum | GetDistance | GetTimestamp;
 
 
 Expression returns Expression:
-    ConsultVariable  | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal | GetTimestamp | GetDistance | STRING | BOOLEAN | EDouble
+    Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
 ;
 Type returns Type:
     {Type} ('number' | 'boolean' | 'void' | 'string')
 ;
 
+ConstanteNum returns ConstanteNum : 
+    {ConstanteNum} value=EDouble
+    ;
 
+ConstanteBool returns ConstanteBool : 
+    {ConstanteBool} value=BOOLEAN
+    ;
+
+ConstanteStr returns ConstanteStr : 
+    {ConstanteStr} value=STRING
+    ;
 Instruction returns Instruction:
-    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | SetSpeed | Expression
+    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | SetSpeed | Expression | ReassignVariable
 ;
 
 Metrique returns Metrique:
@@ -31,7 +41,7 @@ Metrique returns Metrique:
 ;
 
 ConsultVariable returns ConsultVariable:
-    defvariable=[DefVariable:ID ] 
+    defvariable=[DefVariable:ID] 
 ;
 
 ReassignVariable returns ReassignVariable :
@@ -118,7 +128,7 @@ GetTimestamp returns GetTimestamp:
     {GetTimestamp} 'getTimestamp()'  
 ;
 
-GetDistance returns GetTimestamp:
+GetDistance returns GetDistance:
     {GetTimestamp} 'getDistance()'  
 ;
 

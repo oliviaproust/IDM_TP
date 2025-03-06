@@ -66,6 +66,18 @@ interface Parametre {
 	libelle: string
 }
 
+interface ConstanteBool extends Expression{
+	value : boolean;
+}
+
+interface ConstanteNum extends Expression{
+	value : number;
+}
+
+interface ConstanteStr extends Expression{
+	value : string;
+}
+
 interface Minus extends OperationBinaire {
 }
 
@@ -111,6 +123,8 @@ interface Movement extends Expression {
 	distance: number
 	metrique: Metrique
 }
+
+interface SimpleExpression extends Expression{}
 
 interface Rotation extends Instruction {
 	sens: SensRotation
