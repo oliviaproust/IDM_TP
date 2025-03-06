@@ -11,7 +11,8 @@ export function registerValidationChecks(services: B0TchServices) {
     const checks: ValidationChecks<B0TchAstType> = {
         DefFonction: validator.checkDefFunction,
         DefVariable: validator.checkVoid,
-        CallFonction: validator.checkParametersNumber
+        CallFonction: validator.checkParametersNumber,
+        Robot : validator.checkEntry
     };
     registry.register(checks, validator);
 }
@@ -61,6 +62,11 @@ export class B0TchValidator {
                 `Wrong number of parameters: expected ${declaredCount}, got ${actualCount}.`,
                 { node: call, property: 'parametres' }
             );
+        }
+    }
+    checkEntry(robot : Robot, accept : ValidationAcceptor){
+        if (!robot.bloc.find((def) => def.name == "entry")){
+            accept('error', 'La fonction entry est requise.', { node: robot });
         }
     }
 }
