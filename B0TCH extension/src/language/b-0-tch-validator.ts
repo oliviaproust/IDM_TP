@@ -1,5 +1,5 @@
 import type { ValidationAcceptor, ValidationChecks } from 'langium';
-import type { B0TchAstType, DefFonction, Robot } from './generated/ast.js';
+import { CallFonction, DefVariable,  type B0TchAstType, type DefFonction, type Robot } from './generated/ast.js';
 import type { B0TchServices } from './b-0-tch-module.js';
 
 /**
@@ -9,7 +9,9 @@ export function registerValidationChecks(services: B0TchServices) {
     const registry = services.validation.ValidationRegistry;
     const validator = services.validation.B0TchValidator;
     const checks: ValidationChecks<B0TchAstType> = {
-        DefFonction: validator.checkDefFunction
+        DefFonction: validator.checkDefFunction,
+        DefVariable: validator.checkVoid,
+        CallFonction: validator.checkParametersNumber
     };
     registry.register(checks, validator);
 }
@@ -33,6 +35,32 @@ export class B0TchValidator {
 
         if (duplicateCount > 1) {
             accept('warning', `La fonction "${defFonction.name}" est déjà définie.`, { node: defFonction, property: 'name' });
+        }
+    }
+    checkVoid(defVariable: DefVariable, accept: ValidationAcceptor) {
+        const typeNode = defVariable.type.$cstNode?.text;
+        if (typeNode && typeNode === 'void') {
+            accept('error', 'Type should not be void.', {
+                node: defVariable,
+                property: 'type'
+            });
+        }
+    }
+
+    checkParametersNumber(call: CallFonction, accept: ValidationAcceptor): void {
+        const def = call.refFonction;
+        if (!def) {
+            return;
+        }
+
+        const declaredCount = def.ref?.parametres?.length ?? 0;
+        const actualCount = call.parametres?.length ?? 0;
+        if (declaredCount !== actualCount) {
+            accept(
+                'error',
+                `Wrong number of parameters: expected ${declaredCount}, got ${actualCount}.`,
+                { node: call, property: 'parametres' }
+            );
         }
     }
 }
