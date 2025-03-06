@@ -2,6 +2,9 @@ import { type Module, inject } from 'langium';
 import { createDefaultModule, createDefaultSharedModule, type DefaultSharedModuleContext, type LangiumServices, type LangiumSharedServices, type PartialLangiumServices } from 'langium/lsp';
 import { B0tchGeneratedModule, B0TchGeneratedSharedModule } from './generated/module.js';
 import { B0TchValidator, registerValidationChecks } from './b-0-tch-validator.js';
+import { registerVisitorAsValidator } from '../semantics/b-0-tch-visitor.js';
+import { B0TchAcceptWeaver } from '../semantics/b-0-tch-accept-weaver.js';
+import { Interpreter } from '../semantics/interpreter.js';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -9,7 +12,11 @@ import { B0TchValidator, registerValidationChecks } from './b-0-tch-validator.js
 export type B0TchAddedServices = {
     validation: {
         B0TchValidator: B0TchValidator
-    }
+    },
+    visitors: {
+        B0TchAcceptWeaver: B0TchAcceptWeaver
+        Interpreter: Interpreter
+      }
 }
 
 /**
@@ -26,6 +33,10 @@ export type B0TchServices = LangiumServices & B0TchAddedServices
 export const B0TchModule: Module<B0TchServices, PartialLangiumServices & B0TchAddedServices> = {
     validation: {
         B0TchValidator: () => new B0TchValidator()
+    },
+    visitors: {
+        B0TchAcceptWeaver: (services) => new B0TchAcceptWeaver(services),
+        Interpreter: () => new Interpreter()
     }
 };
 
