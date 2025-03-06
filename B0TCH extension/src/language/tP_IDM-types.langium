@@ -44,7 +44,7 @@ interface ReassignVariable extends Instruction {
 }
 
 interface DefVariable extends Instruction {
-	libelle: string
+	name: string
 	^type: Type
 	valeur: Expression
 }
