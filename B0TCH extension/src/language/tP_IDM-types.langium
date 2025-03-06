@@ -143,7 +143,7 @@ interface Loop extends Instruction {
 
 interface Condition extends Instruction {
 	then: Instruction[]
-	else : Instruction[]
+	autre : Instruction[]
 	condition: Expression
 }
 

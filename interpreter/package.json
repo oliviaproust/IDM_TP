@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@types/p5": "^1.7.6",
+    "langium-visitor": "^1.4.0"
+  },
+  "scripts": {
+    "langium:visitor": "langium-visitor"
+  },
+  "dependencies": {
+    "p5": "^1.11.3"
+  }
+}

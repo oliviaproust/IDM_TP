@@ -126,7 +126,7 @@ Loop returns Loop:
 ;
 
 Condition returns Condition:
-    'if'  condition=Expression 'then' '{' (then+=Instruction)* '}' ('else' '{' (else+=Instruction  )* '}')?   
+    'if'  condition=Expression 'then' '{' (then+=Instruction)* '}' ('else' '{' (autre+=Instruction  )* '}')?   
 ;
 
 SetSpeed returns SetSpeed:
