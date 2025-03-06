@@ -57,7 +57,7 @@ interface CallFonction extends Expression {
 	parametres?: Expression[]
 }
 
-interface DefFonction extends Instruction {
+interface DefFonction {
 	type: Type
 	parametres?: Parametre[]
 	bloc: Instruction[]

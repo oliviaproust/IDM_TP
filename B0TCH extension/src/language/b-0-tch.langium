@@ -38,7 +38,7 @@ ConstanteStr returns ConstanteStr :
     {ConstanteStr} value=STRING
     ;
 Instruction returns Instruction:
-    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | SetSpeed | Expression | ReassignVariable
+    Movement | Rotation | Loop | DefVariable | Condition | ConsultVariable | SetSpeed | Expression | ReassignVariable
 ;
 
 Metrique returns Metrique:
