@@ -4,7 +4,7 @@ import 'tP_IDM-types'
 import 'XMLType-types'
 
 entry Robot returns Robot:
-    Block
+    (bloc+=DefFonction)*
 ;
 
 fragment Block : 

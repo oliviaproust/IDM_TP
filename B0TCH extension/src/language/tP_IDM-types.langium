@@ -11,7 +11,7 @@ type SensRotation_Clock = 'Clock';
 type SensRotation_CounterClock = 'CounterClock';
 
 interface Robot {
- bloc: Instruction[]
+ bloc: DefFonction[]
 }
 
 interface Add extends OperationBinaire {
