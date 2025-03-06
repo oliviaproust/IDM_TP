@@ -9,7 +9,8 @@ export function registerValidationChecks(services: B0TchServices) {
     const registry = services.validation.ValidationRegistry;
     const validator = services.validation.B0TchValidator;
     const checks: ValidationChecks<B0TchAstType> = {
-        DefFonction: validator.checkDefFunction
+        DefFonction: validator.checkDefFunction, 
+        Robot : validator.checkEntry
     };
     registry.register(checks, validator);
 }
@@ -33,6 +34,12 @@ export class B0TchValidator {
 
         if (duplicateCount > 1) {
             accept('warning', `La fonction "${defFonction.name}" est déjà définie.`, { node: defFonction, property: 'name' });
+        }
+    }
+
+    checkEntry(robot : Robot, accept : ValidationAcceptor){
+        if (!robot.bloc.find((def) => def.name == "entry")){
+            accept('error', 'La fonction entry est requise.', { node: robot });
         }
     }
 }
