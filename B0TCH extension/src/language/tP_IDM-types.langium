@@ -35,7 +35,12 @@ interface Metrique {
 }
 
 interface ConsultVariable extends Expression {
-	defvariable: @DefVariable
+	defvariable: @Variable
+}
+
+interface Variable extends Instruction{
+	name: string
+	^type: Type
 }
 
 interface ReassignVariable extends Instruction {
@@ -43,9 +48,7 @@ interface ReassignVariable extends Instruction {
 	valeur : Expression
 }
 
-interface DefVariable extends Instruction {
-	name: string
-	^type: Type
+interface DefVariable extends Variable {
 	valeur: Expression
 }
 
@@ -61,9 +64,7 @@ interface DefFonction extends Instruction {
 	name: string
 }
 
-interface Parametre {
-	type: Type
-	name: string
+interface Parametre extends Variable {
 }
 
 interface ConstanteBool extends Expression{

@@ -45,7 +45,7 @@ Metrique returns Metrique:
 ;
 
 ConsultVariable returns ConsultVariable:
-    defvariable=[DefVariable:ID] 
+    defvariable=[Variable:ID]
 ;
 
 ReassignVariable returns ReassignVariable :
