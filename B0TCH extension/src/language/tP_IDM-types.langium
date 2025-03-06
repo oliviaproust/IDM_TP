@@ -120,7 +120,7 @@ interface Void extends Type {
 
 interface Movement extends Expression {
 	direction: Direction
-	distance: number
+	distance: Expression
 	metrique: Metrique
 }
 
@@ -128,7 +128,7 @@ interface SimpleExpression extends Expression{}
 
 interface Rotation extends Instruction {
 	sens: SensRotation
-	degre: number
+	degre: Expression
 }
 
 interface Loop extends Instruction {

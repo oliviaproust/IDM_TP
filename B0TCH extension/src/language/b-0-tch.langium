@@ -105,11 +105,11 @@ DefFonction returns DefFonction:
 ;
 
 Movement returns Movement:
-    direction=Direction distance=EDouble 'in' metrique=Metrique  
+    direction=Direction distance=Expression 'in' metrique=Metrique  
 ;
 
 Rotation returns Rotation:
-    sens=SensRotation degre=EDouble
+    sens=SensRotation degre=Expression
 ;
 
 Loop returns Loop:
