@@ -15,7 +15,8 @@ Add returns Expression:
     SimpleExpression ({Add.x=current} '+' y=Expression)*;
 
 SimpleExpression returns SimpleExpression:
-    '(' Expression ')' | ConsultVariable | CallFonction | ConstanteBool | ConstanteStr | ConstanteNum | GetDistance | GetTimestamp;
+    '(' Expression ')' | ConstanteBool | ConsultVariable | CallFonction | ConstanteStr | ConstanteNum | GetDistance | GetTimestamp
+;
 
 
 Expression returns Expression:
