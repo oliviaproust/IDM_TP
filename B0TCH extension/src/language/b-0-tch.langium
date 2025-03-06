@@ -15,16 +15,15 @@ SimpleExpression:
 
 
 Expression returns Expression:
-    ConsultVariable  | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal | STRING | BOOLEAN | EDouble
+    ConsultVariable  | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal | GetTimestamp | GetDistance | STRING | BOOLEAN | EDouble
 ;
 Type returns Type:
     {Type} ('number' | 'boolean' | 'void' | 'string')
 ;
 
 
-
 Instruction returns Instruction:
-    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | SetSpeed | GetTimestamp | CallFonction | Add | Minus | Times | Divide | And | Or | Inverse | Not | MoreThan | LessThan | Equal 
+    Movement | Rotation | Loop | DefVariable | Condition | DefFonction | ConsultVariable | SetSpeed | Expression
 ;
 
 Metrique returns Metrique:
@@ -33,6 +32,10 @@ Metrique returns Metrique:
 
 ConsultVariable returns ConsultVariable:
     defvariable=[DefVariable:ID ] 
+;
+
+ReassignVariable returns ReassignVariable :
+    defvariable=[DefVariable:ID] "=" valeur=Expression
 ;
 
 CallFonction returns CallFonction:
@@ -104,15 +107,19 @@ Loop returns Loop:
 ;
 
 Condition returns Condition:
-    'if'  condition=Expression 'then' '{' (then+=Instruction  ("," then+=Instruction  )*)? 'else' '{' (else+=Instruction  ("," else+=Instruction  )*)? '}' '}'  
+    'if'  condition=Expression 'then' '{' (then+=Instruction)* '}' 'else' '{' (else+=Instruction  )* '}'   
 ;
 
 SetSpeed returns SetSpeed:
-    'SetSpeed' '('vitesse=EDouble 'in' metrique=Metrique  ')'  
+    'setSpeed' '('vitesse=Expression 'in' metrique=Metrique  ')'  
 ;
 
 GetTimestamp returns GetTimestamp:
     {GetTimestamp} 'getTimestamp()'  
+;
+
+GetDistance returns GetTimestamp:
+    {GetTimestamp} 'getDistance()'  
 ;
 
 Direction returns Direction:
@@ -144,4 +151,5 @@ SensRotation_CounterClock returns SensRotation_CounterClock: 'CounterClock' ;
 EDouble returns number:
     '-'? INT ('.' INT (('E' | 'e' )'-'? INT )? )? 
 ;
+
 

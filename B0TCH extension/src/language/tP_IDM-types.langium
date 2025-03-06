@@ -38,6 +38,11 @@ interface ConsultVariable extends Expression {
 	defvariable: @DefVariable
 }
 
+interface ReassignVariable extends Instruction {
+	defvariable : @DefVariable
+	valeur : Expression
+}
+
 interface DefVariable extends Instruction {
 	libelle: string
 	^type: Type
@@ -95,16 +100,13 @@ interface LessThan extends OperationBinaire {
 interface Equal extends OperationBinaire {
 }
 
-// interface Num extends Type {
-// }
-
 interface Boolean extends Type {
 }
 
 interface Void extends Type {
 }
 
-interface Movement extends Instruction {
+interface Movement extends Expression {
 	direction: Direction
 	distance: number
 	metrique: Metrique
@@ -127,11 +129,15 @@ interface Condition extends Instruction {
 }
 
 interface SetSpeed extends Instruction {
-	vitesse: number
+	vitesse: Expression
 	metrique: Metrique
 }
 
-interface GetTimestamp extends Instruction {
+interface GetTimestamp extends Expression {
+}
+
+interface GetDistance extends Expression{
+
 }
 
 interface Centimeter extends Metrique {
